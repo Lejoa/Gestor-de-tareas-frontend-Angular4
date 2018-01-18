@@ -5,24 +5,28 @@
 	<form #registerForm = "ngForm" (ngSubmit)="onSubmit()"class="col-md-7">
 		<p>
 		<label>Nombre</label>
-		<input type="text" class="form-control" name="name" required  />
+		<input type="text" class="form-control" name="name" #name = "ngModel" [(ngModel)] = "user.name" required  />
+		<span *ngIf="!name.valid && name.touched"> El nombre no es válido </span>
 		</p>
 
 		<p>
 		<label>Apellidos</label>
-		<input type="text" class="form-control" name="surname"required />
+		<input type="text" class="form-control" name="surname" #surname = "ngModel" [(ngModel)] = "user.surname" required />
+		<span *ngIf="!surname.valid && surname.touched"> Los apellidos no son válidos </span>
 		</p>
 
 		<p>
 		<label>E-mail</label>
-		<input type="text" class="form-control" name="email" required />
+		<input type="text" class="form-control" name="email" #email = "ngModel" [(ngModel)] = "user.email"  required />
+		<span *ngIf="!email.valid && email.touched"> El email no es válido </span>
 		</p>
 
 		<p>
 		<label>Contraseña</label>
-		<input type="password" class="form-control" name="password" required />
+		<input type="password" class="form-control" name="password" #password = "ngModel" [(ngModel)] = "user.password" required />
+		<span *ngIf="!password.valid && password.touched"> El password no es válido </span>
 		</p>
 
-		<input type = "submit" value = "Registrarse" class = "btn btn-success" />
+		<input type = "submit" value = "Registrarse" class = "btn btn-success"  [disabled]="!registerForm.form.valid"/>
 	</form>
 </div>
